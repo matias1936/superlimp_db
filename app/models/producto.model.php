@@ -18,4 +18,6 @@ class ProductoModel{
         $consulta->execute([$id]);
         return $consulta->fetch(PDO::FETCH_OBJ);
     }
+
+    
 }

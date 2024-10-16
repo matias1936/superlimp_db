@@ -1,8 +1,9 @@
 <?php
 include_once 'app/controllers/producto.controller.php';
+
 define('BASE_URL', '//'.$_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']).'/');
 
-$action = 'listar';
+$action = 'home';
 if(!empty ($_GET['action'])){
     $action = $_GET['action'];
 }
@@ -10,19 +11,23 @@ if(!empty ($_GET['action'])){
 $params=explode('/',$action);
 
 switch($params[0]){
-    case 'listar':
+    case 'home':
         $controller = new ProductoController();
         $controller->showProductos();
-    break;
+        $controller->showComentarios();
 
+    break;
+    case 'insertarComentario':
+        $controller = new ProductoController();
+        $controller -> addComentario();
+        break;
     case 'vermas':
         $controller = new ProductoController();
         $controller -> showBy($params[1]);
         break;
-    break;
 
     default:
-        header("HTTP/1.0 404 Not Found");
+
         echo"404 Pagina no encontrada";
     break;
 };

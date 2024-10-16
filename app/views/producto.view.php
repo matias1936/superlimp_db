@@ -35,6 +35,33 @@ class ProductoView{
         <?php } ?>
     </ul>
     <?php
-    require_once 'templates/footer.php';
+    
     }
+    function showComentarios($comentarios) {
+        require_once 'templates/formComment.php';
+        ?>
+        <div class="row">
+            <div class="col-md-8 mx-auto">
+                <ul class="list-group">
+                    <?php foreach ($comentarios as $comentario) { ?>
+                        <li class="list-group-item mb-3 shadow-sm">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <h5 class="mb-1">Anónimo</h5>
+                                <span class="badge bg-primary rounded-pill">
+                                    <?php echo $comentario->puntuacion; ?> ⭐
+                                </span>
+                            </div>
+                            <p class="mb-1 text-muted">
+                                <?php echo htmlspecialchars($comentario->comentario); ?>
+                            </p>
+                            <small class="text-muted">Publicado hace X días</small>
+                        </li>
+                    <?php } ?>
+                </ul>
+            </div>
+        </div>
+        <?php
+        require_once 'templates/footer.php';
+    }
+    
 }
